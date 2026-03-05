@@ -23,4 +23,6 @@ declare global {
     recommended_months: number[];
     crowd_level: 1 | 2 | 3 | 4 | 5;
   }
+
+  type LocaleType = "en" | "ar"
 }

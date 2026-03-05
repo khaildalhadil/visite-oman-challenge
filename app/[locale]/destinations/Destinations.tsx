@@ -1,4 +1,4 @@
-import Place from "../components/Place"
+import Place from "./Place"
 
 type Props = {
   listOfPlaces: Destination[],
