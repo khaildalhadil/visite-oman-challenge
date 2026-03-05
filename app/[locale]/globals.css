@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+ */
+body {
+  /* background: var(--background);
+  color: var(--foreground); */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .hero_ima {
+    @apply rounded absolute transition duration-300 hover:z-20 hover:scale-105 hover:outline-8 hover:outline-green-400 shadow-lg outline-offset-8;
+  }
+}

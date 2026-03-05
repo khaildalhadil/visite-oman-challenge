@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
 
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['picsum.photos']
+    domains: ['picsum.photos', 'img.freepik.com']
   }
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
