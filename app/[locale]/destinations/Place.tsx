@@ -75,7 +75,7 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
         </div>
 
         <div className="">
-          <Link href={""} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl">{t("seeMore")}</Link>
+          <Link href={`/destinations/${place.id}`} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl">{t("seeMore")}</Link>
         </div>
       </div>
     </li>

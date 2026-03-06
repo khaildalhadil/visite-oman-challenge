@@ -13,7 +13,7 @@ declare global {
       en: string;
       ar: string;
     };
-    categories: ("culture" | "food" | "nature" | "adventure")[];
+    categories: ("culture" | "food" | "nature" | "adventure" | "beach" | "mountain" | "desert" )[];
     company: {
       en: string;
       ar: string;

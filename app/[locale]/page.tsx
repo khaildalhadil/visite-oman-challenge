@@ -1,4 +1,5 @@
 'use client'
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useTranslations } from "use-intl";
 
@@ -17,7 +18,7 @@ export default function Home({ params }: PageParams) {
   const t = useTranslations('HomePage')
 
   return (
-    <div className="flex items-center justify-between gap-5 mt-20">
+    <div className="flex items-center justify-between gap-5 mt-20 mb-30">
 
       <div className="flex-1">
         <h1 className="text-5xl font-bold mb-5">
@@ -27,14 +28,17 @@ export default function Home({ params }: PageParams) {
           {t("description")}
         </p>
         <div>
-        <button className="bg-green-600 text-white px-4 py-2 rounded mt-5 text-lg cursor-pointer">
-          Start your journey
-        </button>
-        <button className="bg-gray-400 text-white px-4 py-2 rounded mt-5 ml-4 text-lg cursor-pointer">
-          Learn More
-        </button>
 
-        <div className="flex items-center gap-20 ">
+        <div className="flex gap-4">
+          <Link href={"/destinations"} className="bg-green-600 text-white px-4 py-2 rounded mt-5 text-lg cursor-pointer">
+            {t('start_now')}
+          </Link>
+          <button className=" border border-gray-400 text-gray-700 px-4 py-2 rounded mt-5 text-lg cursor-pointer">
+            {t('learn_more')}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-5">
           <div className="flex items-center my-5 relative">
             <Image
               src="https://img.freepik.com/free-photo/happy-man-student-with-afro-hairdo-shows-white-teeth-being-good-mood-after-classes_273609-16608.jpg"
@@ -50,7 +54,7 @@ export default function Home({ params }: PageParams) {
               alt="oman"
               width={40}
               height={40}
-              className=" rounded-full h-10 w-10 object-cover absolute left-5"
+              className=" rounded-full h-10 w-10 object-cover"
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlMGUwZTAiIC8+PC9zdmc+"
             />
@@ -59,7 +63,7 @@ export default function Home({ params }: PageParams) {
               alt="oman"
               width={40}
               height={40}
-              className=" rounded-full h-10 w-10 object-cover absolute left-10"
+              className=" rounded-full h-10 w-10 object-cover "
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlMGUwZTAiIC8+PC9zdmc+"
             />
@@ -68,7 +72,7 @@ export default function Home({ params }: PageParams) {
               alt="oman"
               width={40}
               height={40}
-              className=" rounded-full h-10 w-10 object-cover absolute left-15"
+              className=" rounded-full h-10 w-10 object-cover "
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlMGUwZTAiIC8+PC9zdmc+"
             />
