@@ -25,4 +25,19 @@ declare global {
   }
 
   type LocaleType = "en" | "ar"
+  type Category = "culture" | "food" | "nature" | "adventure" | "beach" | "mountain" | "desert";
+  type Season =
+    | "January"
+    | "February"
+    | "March"
+    | "April"
+    | "May"
+    | "June"
+    | "July"
+    | "August"
+    | "September"
+    | "October"
+    | "November"
+    | "December";
+
 }

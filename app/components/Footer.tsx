@@ -12,7 +12,7 @@ export default function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <div className=" py-4 text-center  border-t border-neutral-200 pt-10">
+    <footer className=" py-4 text-center  border-t border-neutral-200 pt-10">
       <div className="text-3xl">
         {t("logo")}
       </div>
@@ -33,6 +33,6 @@ export default function Footer() {
         </ul>
       </div>
       <p>&copy; 2026 Make By Khalid Alhadi</p>
-    </div>
+    </footer>
   )
 }

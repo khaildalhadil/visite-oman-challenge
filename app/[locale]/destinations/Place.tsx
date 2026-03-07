@@ -1,5 +1,6 @@
 'use client'
 
+import { CrowdColor } from "@/app/lib/constantValues";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image"
 import Link from "next/link";
@@ -18,15 +19,6 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
   const placeLocation = place.region[locale as "en" | "ar"];
 
   const t = useTranslations("DestinationsPage");
-
-  const crowdColor = {
-    1: "bg-green-100 text-green-700",
-    2: "bg-green-200 text-green-800",
-    3: "bg-yellow-100 text-yellow-700",
-    4: "bg-orange-100 text-orange-700",
-    5: "bg-red-300 text-red-800",
-  };
-
   const crowdState = t(`crowdLevels.${crowd}`);
 
   return (
@@ -61,7 +53,7 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
           <div className="flex gap-3 py-1 text-sm mb-2">
             <span className="bg-gray-400/30 px-2 rounded-full">{placeLocation}</span>
             <span
-              className={`${crowdColor[crowd]} bg-gray-400/30 px-2 rounded-full `}
+              className={`${CrowdColor[crowd]} bg-gray-400/30 px-2 rounded-full `}
             >{crowdState}</span>
           </div>
           <div className="mb-2 flex gap-2">

@@ -20,30 +20,32 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <div className="flex justify-between items-center border-b border-gray-100">
+    <header className="flex justify-between items-center border-b border-gray-100">
       <Image
         src="/Oman.png" 
         alt="oman logo" 
         width={100}
         height={100}
         />
-        <ul className="flex gap-5 text-lg hover:">
-          {
-            navLinks.map(
-              ((link, i) => {
-                const isActive = pathname == link.href;
-                return (<li key={i} className={`${isActive ? "text-blue-500 font-bold": "text-gray-900"}`}><Link href={link.href}>{link.name}</Link></li> )
-              })
-            )
-          }
-          
-        </ul>
+        <nav>
+          <ul className="flex gap-5 text-lg hover:">
+            {
+              navLinks.map(
+                ((link, i) => {
+                  const isActive = pathname == link.href;
+                  return (<li key={i} className={`${isActive ? "text-blue-500 font-bold": "text-gray-900"}`}><Link href={link.href}>{link.name}</Link></li> )
+                })
+              )
+            }
+            
+          </ul>
+        </nav>
 
         <div className="flex items-center gap-11">
           <LanguageSelector />
           <IoMoonOutline className="cursor-pointer" />
         </div>
 
-    </div>
+    </header>
   )
 }
