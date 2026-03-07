@@ -4,8 +4,8 @@
     "title": "Discover the Best Destinations in Oman",
     "description": "The Sultanate of Oman is a unique tourist destination that combines stunning natural beauty with rich heritage. From towering mountains to enchanting beaches and traditional souks, Oman offers a unique experience for visitors seeking adventure, culture, and natural beauty.",
     "visitors": "More Than 3.9 Million Visitors in 2025",
-    "start_now": "Start Your Journey",
-    "learn_more": "Learn More"
+    "start_now": "Plan Your Trip",
+    "learn_more": "All Destinations"
   },
   "HeaderPage": {
     "HomeLink": "Home",
@@ -52,7 +52,24 @@
       "beach": "Beach",
       "mountain": "Mountain",
       "desert": "Desert"
+    },
+    "filterRecommendedSeasons": "Recommended Seasons",
+    "recommendedSeasons": {
+      "all": "All",
+      "January": "January",
+      "February": "February",
+      "March": "March",
+      "April": "April",
+      "May": "May",
+      "June": "June",
+      "July": "July",
+      "August": "August",
+      "September": "September",
+      "October": "October",
+      "November": "November",
+      "December": "December"
     }
+
   },
   "footer": {
     "logo": "Visit Oman",

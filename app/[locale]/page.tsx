@@ -33,9 +33,9 @@ export default function Home({ params }: PageParams) {
           <Link href={"/destinations"} className="bg-green-600 text-white px-4 py-2 rounded mt-5 text-lg cursor-pointer">
             {t('start_now')}
           </Link>
-          <button className=" border border-gray-400 text-gray-700 px-4 py-2 rounded mt-5 text-lg cursor-pointer">
+          <Link href={"/destinations"} className=" border border-gray-400 text-gray-700 px-4 py-2 rounded mt-5 text-lg cursor-pointer">
             {t('learn_more')}
-          </button>
+          </Link>
         </div>
 
         <div className="flex items-center gap-5">

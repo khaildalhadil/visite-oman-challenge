@@ -19,18 +19,22 @@ export default function PaginationControls({hasNextPage, hasPrevPage, numberOfPa
   const per_page = searchParams.get('per_page') ?? Per_Page;
   const region = searchParams.get('region') ?? "all"
   const category = searchParams.get('category') ?? "all"
+  const season = searchParams.get('season') ?? "all"
 
   const paramsAddPage = new URLSearchParams({
     page: String(Number(page) + 1),
     per_page: String(per_page),
     region: region,
-    category: category
+    category: category,
+    season: season
   })
 
   const paramsBackPage = new URLSearchParams({
     page: String(Number(page) - 1),
     per_page: String(per_page),
-    region: region
+    region: region,
+    category: category,
+    season: season
   })
 
 

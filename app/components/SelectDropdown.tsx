@@ -13,7 +13,7 @@ type Props = {
 }
 
 const SelectDropdown = ({selectName, options, filterKey}: Props) => {
-
+  
   const ref = useRef<HTMLDivElement>(null);
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -23,6 +23,7 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
   const searchParams = useSearchParams();
   const region = searchParams.get('region') ?? "all"
   const category = searchParams.get('category') ?? "all"
+  const season = searchParams.get('season') ?? "all"
 
   // console.log(searchParams);
   
@@ -37,7 +38,8 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
         page: "1",
         per_page: Per_Page.toString(),
         "category": category,
-        [filterKey]: value,
+        "season": season,
+        [filterKey]: value
       })
     }
     else if(filterKey === "category") {
@@ -45,7 +47,17 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
         page: "1",
         per_page: Per_Page.toString(),
         "region": region,
+        "season": season,
         [filterKey]: value,
+      })
+    }
+    else if(filterKey === "season") {
+      params = new URLSearchParams({
+        page: "1",
+        per_page: Per_Page.toString(),
+        "region": region,
+        "category": category,
+        [filterKey]: value
       })
     }
     
@@ -58,7 +70,7 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
   const dropdownContent = (
     <div 
       ref={ref}
-      className=' absolute top-0 left-0 mt-10 bg-neutral-50 z-30 w-full h-ull border border-neutral-400 rounded p-2 '
+      className=' absolute top-0 left-0 mt-10 bg-neutral-50 z-30 w-full border border-neutral-400 rounded p-2 '
       >
       {Object.entries(options).map(([key, value]) => (
         <div 
@@ -73,7 +85,7 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
 
   return (
     <div 
-      className='h-8 w-48 border border-neutral-400 px-3 py-2 rounded flex justify-between items-center  cursor-pointer relative' 
+      className='h-8 w-60 border border-neutral-400 px-3 py-2 rounded flex justify-between items-center  cursor-pointer relative' 
       onClick={() => setShowDropdown(!showDropdown)}
       >
       {selectedOption}

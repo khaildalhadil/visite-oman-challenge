@@ -31,8 +31,8 @@ export default async function RootLayout({
   const { locale } = await params;
 
   return (
-    <html lang={locale} className={`${inter.className} `} dir={locale == "en" ? "ltr": "rtl"}>
-      <body className="text-gray-600">
+    <html lang={locale} className={inter.className} dir={locale === "en" ? "ltr": "rtl"}>
+      <body className="text-gray-600 min-h-screen">
         <NextIntlClientProvider>
           <div className="max-w-325 m-auto p-4">
             <Header />
