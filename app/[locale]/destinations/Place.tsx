@@ -15,6 +15,8 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
 
   const crowd = place.crowd_level;
   const min = place.avg_visit_duration_minutes;
+  const cost = place.ticket_cost_omr
+  console.log(cost);
   const placeName = place.name[locale as "en" | "ar"];
   const placeLocation = place.region[locale as "en" | "ar"];
 
@@ -62,6 +64,11 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
                 t(`categories.${category}`)
                 }</span>
             ))}
+
+            <span className="bg-gray-400/30 px-2 rounded-full">
+                {cost} 
+                <span> Rial</span>
+              </span>
           </div>
           <span></span>
         </div>

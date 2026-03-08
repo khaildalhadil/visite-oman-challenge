@@ -2,11 +2,10 @@
 
 import { CrowdColor } from '@/app/lib/constantValues'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { CiBookmark, CiLocationOn, CiShare2 } from 'react-icons/ci'
 import Figures from './Figures'
-import { useParams, useSearchParams } from 'next/navigation'
-
+import { useParams } from 'next/navigation'
+import DestinatoinMoreDetils from './DestinatoinMoreDetils'
 
 type Props = {
   destination: Destination
@@ -35,13 +34,10 @@ type Props = {
 const DestinationDetils = ({destination}: Props) => {
 
   const searchParams = useParams();
-
   const locale = searchParams.locale ?? "en";
 
   const t = useTranslations("DestinationsPage");
   const crowdState = t(`crowdLevels.${destination.crowd_level}`);
-  
-
   
   const placeName = destination.name[locale as "en" | "ar"];
   const placeLocation = destination.region[locale as "en" | "ar"];
@@ -75,15 +71,7 @@ const DestinationDetils = ({destination}: Props) => {
 
       <Figures />
 
-      <div className='my-10 border-b border-neutral-200 pb-3'>
-        <ul className='flex justify-between'>
-          <li className='border-b mb-3'>Overview</li>
-          <li>Location</li>
-          <li>What&apos;s included</li>
-          <li>Reviews</li>
-        </ul>
-      </div>
-
+      <DestinatoinMoreDetils destination={destination} />
 
     </div>
   )

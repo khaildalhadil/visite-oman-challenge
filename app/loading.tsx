@@ -1,7 +1,11 @@
-import React from 'react'
+
+import CardSkeleton from './components/CardSkeleton'
 
 export default function loading() {
   return (
-    <div style={{fontSize: '2xl'}}>loading</div>
+    <div className="max-w-325 m-auto p-4 mt-10">
+      <CardSkeleton />
+
+    </div>
   )
 }

@@ -5,6 +5,7 @@ import DestinationsPageHeader from "./DestinationsPageHeader";
 import { Suspense } from "react";
 import CardSkeleton from "@/app/components/CardSkeleton";
 import {getPlaces} from "@/app/lib/data";
+import { sortDestinations } from "./sortDestinations";
 
 type props = {
   searchParams: Promise<{[keyof: string]: string | string[] | undefined}>
@@ -14,12 +15,13 @@ export default async function Page({searchParams}: props) {
   
   const searchParam = await searchParams;
   const allPlaces: Destination[] = await getPlaces();
+  let result: Destination[] | [] = [];
   
   // filter region
   // let filterByRegion = allPlaces;
   const region: string = searchParam['region']?.toString() ?? 'all';
 
-  const filterByRegion =
+  result =
     region === "all" || region === "All" || region === "الكل"
       ? allPlaces
       : allPlaces.filter((place) => place.region.en === regionMap[region]);
@@ -27,29 +29,35 @@ export default async function Page({searchParams}: props) {
   // let filterByRegionAndCategory = filterByRegion;
   const category: string = searchParam['category']?.toString() ?? 'all';
 
-  const filterByRegionAndCategory =
+  result =
     category === "all" || category === "All" || category === "الكل"
-      ? filterByRegion
-      : filterByRegion.filter((place) =>  
+      ? result
+      : result.filter((place) =>  
           place.categories.includes(categoryMap[category]),
         );
 
   const season: string = searchParam['season']?.toString() ?? 'all';
-  
 
-  const filterByRAndCAndSeason =
+  result =
     season === "all" || season === "All" || season === "الكل"
-      ? filterByRegionAndCategory
-      : filterByRegionAndCategory.filter((place) =>
+      ? result
+      : result.filter((place) =>
           place.recommended_months.includes(seasonMap[season]),
         );
+
+  const sort: string = searchParam['sort']?.toString() ?? 'all';
+
+  result =
+    sort === "all" || sort === "All" || sort === "الكل"
+      ? result
+      : sortDestinations(result, sort)
 
   // default param
   const page = searchParam['page'] ?? '1';
   const per_page = searchParam['per_page'] ?? Per_Page;
   const start = (Number(page) - 1) * Number(per_page); // 0, 12, 24
   const end = start + Number(per_page);// 12, 24, 36
-  const enteries = filterByRAndCAndSeason.slice(start, end)
+  const enteries = result.slice(start, end)
 
 
     return (
@@ -61,8 +69,8 @@ export default async function Page({searchParams}: props) {
           <>
             <Destinations listOfPlaces={enteries} />
             <PaginationControls 
-              hasNextPage={end < filterByRAndCAndSeason.length} hasPrevPage={start > 0}  
-              numberOfPages={Math.ceil(filterByRAndCAndSeason.length / Number(per_page))}
+              hasNextPage={end < result.length} hasPrevPage={start > 0}  
+              numberOfPages={Math.ceil(result.length / Number(per_page))}
               />
           </>
             :<div className="flex justify-center my-30">
