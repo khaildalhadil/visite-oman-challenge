@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "../components/Footer";
+import Chat from "../components/Chat";
 
 
 export const metadata: Metadata = {
@@ -44,6 +45,9 @@ export default async function RootLayout({
             <Footer />
           </div>
         </NextIntlClientProvider>
+
+        <Chat />
+
       </body>
     </html>
   );

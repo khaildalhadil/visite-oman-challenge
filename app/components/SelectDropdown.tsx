@@ -60,6 +60,16 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
         [filterKey]: value
       })
     }
+    else if(filterKey === "sort") {
+      params = new URLSearchParams({
+        page: "1",
+        per_page: Per_Page.toString(),
+        "region": region,
+        "category": category,
+        "season": season,
+        [filterKey]: value
+      })
+    }
     
     
     router.push(`/destinations/?${params.toString()}`);

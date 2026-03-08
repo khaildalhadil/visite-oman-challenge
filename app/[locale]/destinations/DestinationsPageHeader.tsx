@@ -11,17 +11,19 @@ export default function DestinationsPageHeader() {
   const category = params.get("category") ?? null;
   const region = params.get("region") ?? null;
   const season = params.get("season") ?? null;
+  const sort = params.get("sort") ?? null;
 
   const t = useTranslations("DestinationsPage")
   const regions = t.raw("regions");
   const categorys = t.raw("filterCategories");
   const seasons = t.raw("recommendedSeasons");
+  const sortBy = t.raw("sortBy");
   
   /**
    * Filter by 
-   *  category Filter 
+   *  category Filter ✔ 
    *  region Filter  ✔
-   *  recommended season
+   *  recommended season ✔
    */
   return (
     <div className="flex justify-between items-center">
@@ -30,27 +32,35 @@ export default function DestinationsPageHeader() {
         {t("title")}
       </h1>
 
-      <div className="flex gap-3">
-        <SelectDropdown 
-          selectName={category ?? t("filterByCategory")} 
-          options={categorys} 
-          filterKey="category"
-          />
-          
-        <SelectDropdown 
-          selectName={ region ?? t("filterByRegion")} 
-          options={regions} 
-          filterKey="region"
-          />
+      <div>
+        <div className="flex gap-3">
+          <SelectDropdown 
+            selectName={category ?? t("filterByCategory")} 
+            options={categorys} 
+            filterKey="category"
+            />
+            
+          <SelectDropdown 
+            selectName={ region ?? t("filterByRegion")} 
+            options={regions} 
+            filterKey="region"
+            />
 
-        <SelectDropdown 
-          selectName={season ?? t("filterRecommendedSeasons")} 
-          options={seasons} 
-          filterKey="season"
-          />
-
-        {/* <button>{t("filterByRegion")}</button>
-        <button>{t("filterBySeason")}</button> */}
+        </div>
+        
+        <div className="flex justify-between mt-2">
+          <SelectDropdown 
+            selectName={season ?? t("filterRecommendedSeasons")} 
+            options={seasons} 
+            filterKey="season"
+            />
+          <SelectDropdown 
+            selectName={sort ?? t("sort")} 
+            options={sortBy} 
+            filterKey="sort"
+            />
+        </div>
+        
       </div>
 
     </div>

@@ -67,6 +67,14 @@
       "October": "أكتوبر",
       "November": "نوفمبر",
       "December": "ديسمبر"
+    },
+    "sort": "فرز حسب",
+    "sortBy": {
+      "all": "الكل",
+      "crowd-asc": "crowd-asc",
+      "crowd-desc": "crowd-desc",
+      "cost-asc": "cost-asc",
+      "cost-desc": "cost-desc"
     }
   },
   "footer": {

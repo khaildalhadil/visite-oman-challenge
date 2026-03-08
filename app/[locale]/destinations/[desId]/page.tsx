@@ -16,8 +16,8 @@ export default async function page({ params }: { params: Promise<{ desId: string
   }
 
   return (
-    <div >
+    <div>
       <DestinationDetils destination={destination} />
     </div>
-  )
+  );
 }

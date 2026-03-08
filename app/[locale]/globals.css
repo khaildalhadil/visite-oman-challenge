@@ -25,5 +25,9 @@ body {
   .hero_ima {
     @apply rounded absolute transition duration-300 hover:z-20 hover:scale-105 hover:outline-8 hover:outline-green-400 shadow-lg outline-offset-8;
   }
+
+  .focusLink {
+    @apply after:content-[''] after:absolute after:-bottom-3 after:left-0 after:border-b-2 after:w-full;
+  }
 }
 
