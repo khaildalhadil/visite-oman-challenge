@@ -13,7 +13,7 @@ declare global {
       en: string;
       ar: string;
     };
-    categories: ("culture" | "food" | "nature" | "adventure" | "beach" | "mountain" | "desert" )[];
+    categories: ("culture" | "food" | "nature" | "beach" | "mountain" | "desert" )[];
     company: {
       en: string;
       ar: string;
@@ -25,7 +25,7 @@ declare global {
   }
 
   type LocaleType = "en" | "ar"
-  type Category = "culture" | "food" | "nature" | "adventure" | "beach" | "mountain" | "desert";
+  type Category = "culture" | "food" | "nature" | "beach" | "mountain" | "desert";
   type Season =
     | "January"
     | "February"
@@ -41,5 +41,17 @@ declare global {
     | "December";
 
 
+  type ThemeType = {
+    themeLight: boolean;
+    setTheme: (b: boolean) => void;
+  }
+
+  type RavoriteDestinations = {
+    tripDays: number
+    budgetTier: string
+    travelMonth: number
+    intensity: string
+    userCategories: string[]
+ }
 
 }

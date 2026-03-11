@@ -9,7 +9,9 @@
   },
   "HeaderPage": {
     "HomeLink": "Home",
-    "DesPage": "Destinations"
+    "DesPage": "Destinations",
+    "Plan": "Plan Your Trip",
+    "saved-Interests": "Saved Interests"
   },
   "DestinationsPage": {
     "title": "Destinations",
@@ -26,7 +28,6 @@
       "culture": "Culture 🏺",
       "food": "Food 🍽️",
       "nature": "Nature 🌿",
-      "adventure": "Adventure 🏞️",
       "beach": "Beach 🏖️",
       "mountain": "Mountain 🏔️",
       "desert": "Desert 🏜️",

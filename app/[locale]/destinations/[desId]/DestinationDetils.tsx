@@ -6,6 +6,8 @@ import { CiBookmark, CiLocationOn, CiShare2 } from 'react-icons/ci'
 import Figures from './Figures'
 import { useParams } from 'next/navigation'
 import DestinatoinMoreDetils from './DestinatoinMoreDetils'
+import { useFavoriteStore } from '@/app/store/useFavoriteStore'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 type Props = {
   destination: Destination
@@ -36,6 +38,9 @@ const DestinationDetils = ({destination}: Props) => {
   const searchParams = useParams();
   const locale = searchParams.locale ?? "en";
 
+  const toggleFavorite = useFavoriteStore(state=> state.toggleFavorite)
+  const favorites = useFavoriteStore(state=> state.favorites)
+
   const t = useTranslations("DestinationsPage");
   const crowdState = t(`crowdLevels.${destination.crowd_level}`);
   
@@ -44,36 +49,38 @@ const DestinationDetils = ({destination}: Props) => {
 
   return (
     <div>
-      <div className='flex justify-between items-center'>
-
+      <div className="flex justify-between items-center">
         <div>
-          <h1 className='text-2xl font-bold mt-5 mb-2'>{placeName}</h1>
+          <h1 className="text-2xl font-bold mt-5 mb-2">{placeName}</h1>
 
-          <div className='flex gap-2 items-center mb-2'>
+          <div className="flex gap-2 items-center mb-2">
             <span
               className={`${CrowdColor[destination.crowd_level]} bg-gray-400/30 px-2 rounded-full `}
-            >{crowdState}</span>
-            <div className='flex gap-2 items-center'>
+            >
+              {crowdState}
+            </span>
+            <div className="flex gap-2 items-center">
               <CiLocationOn />
               <span>{placeLocation}</span>
             </div>
-
           </div>
-
         </div>
 
-        <div className='flex gap-3'>
-          <CiBookmark className='border border-neutral-400 rounded-full text-4xl p-1 cursor-pointer hover:bg-neutral-100' />
-          <CiShare2   className='border border-neutral-400 rounded-full text-4xl p-1 cursor-pointer hover:bg-neutral-100'/>
+        <div className="flex gap-3">
+          <button
+            onClick={() => toggleFavorite(destination.id)}
+            className="border border-neutral-400 rounded-full text-2xl p-1 cursor-pointer hover:bg-neutral-100 text-red-600"
+          >
+            {favorites.includes(destination.id) ? <FaHeart /> : <FaRegHeart />}
+          </button>
+          <CiShare2 className="border border-neutral-400 rounded-full text-4xl p-1 cursor-pointer hover:bg-neutral-100" />
         </div>
-
       </div>
 
       <Figures />
 
       <DestinatoinMoreDetils destination={destination} />
-
     </div>
-  )
+  );
 }
 export default DestinationDetils
