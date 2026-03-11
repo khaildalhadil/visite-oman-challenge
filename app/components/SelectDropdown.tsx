@@ -80,7 +80,7 @@ const SelectDropdown = ({selectName, options, filterKey}: Props) => {
   const dropdownContent = (
     <div 
       ref={ref}
-      className=' absolute top-0 left-0 mt-10 bg-neutral-50 z-30 w-full border border-neutral-400 rounded p-2 '
+      className=' absolute top-0 left-0 mt-10 bg-neutral-50 dark:bg-white dark:text-gray-900 z-30 w-full border border-neutral-400 rounded p-2 '
       >
       {Object.entries(options).map(([key, value]) => (
         <div 

@@ -9,7 +9,9 @@
   },
   "HeaderPage": {
     "HomeLink": "الرئيسية",
-    "DesPage": "الوجهات"
+    "DesPage": "الوجهات",
+    "Plan": "خطط لرحلة",
+    "saved-Interests": "الاهتمامات المحفوظة"
   },
   "DestinationsPage": {
     "title": "الوجهات",
@@ -26,7 +28,6 @@
       "culture": "الثقافة 🏺",
       "food": "الطعام 🍽️",
       "nature": "الطبيعة 🌿",
-      "adventure": "المغامرة 🏞️",
       "beach": "الشاطئ 🏖️",
       "mountain": "الجبل 🏔️",
       "desert": "الصحراء 🏜️"

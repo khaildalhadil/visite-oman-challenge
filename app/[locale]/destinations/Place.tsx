@@ -1,22 +1,26 @@
 'use client'
 
 import { CrowdColor } from "@/app/lib/constantValues";
+import { useFavoriteStore } from "@/app/store/useFavoriteStore";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image"
 import Link from "next/link";
-import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-export default function Place({place, imageId}: {place: Destination, imageId: number}) {
+export default function Place({place, imageId, addToDay, handleAdd}: {
+    place: Destination, imageId: number,addToDay?: boolean, handleAdd?: ()=> void;
+  }) {
 
-  const [isBooked, setIsBooked] = useState(false);
+  const toggleFavorite = useFavoriteStore(state=> state.toggleFavorite)
+  const favorites = useFavoriteStore(state=> state.favorites)
   
   const locale: string = useLocale() as LocaleType;
 
   const crowd = place.crowd_level;
   const min = place.avg_visit_duration_minutes;
   const cost = place.ticket_cost_omr
-  console.log(cost);
+  
   const placeName = place.name[locale as "en" | "ar"];
   const placeLocation = place.region[locale as "en" | "ar"];
 
@@ -26,9 +30,9 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
   return (
     <li className="flex flex-col relative transition duration-400 hover:-translate-y-2 w-full">
       <button 
-        onClick={()=> setIsBooked((booked)=>!booked)}
+        onClick={()=> toggleFavorite(place.id)}
         className="absolute top-0 right-0 m-3 cursor-pointer bg-gray-300/50 p-2 rounded-full text-red-600 text-2xl">
-          {isBooked ? <FaHeart /> : <FaRegHeart />}
+          {favorites.includes(place.id) ? <FaHeart /> : <FaRegHeart />}
       </button>
 
       <Image
@@ -74,7 +78,8 @@ export default function Place({place, imageId}: {place: Destination, imageId: nu
         </div>
 
         <div className="">
-          <Link href={`/destinations/${place.id}`} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl">{t("seeMore")}</Link>
+          <Link href={`/destinations/${place.id}`} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100 ">{t("seeMore")}</Link>
+          {addToDay && <button onClick={handleAdd} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100  cursor-pointer">+ Add to Day</button>}
         </div>
       </div>
     </li>

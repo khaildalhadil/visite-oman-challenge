@@ -8,7 +8,7 @@ export default function Chat() {
   return (
     <div className="fixed -bottom-40 right-0">
 
-      <div className="shadow-2xl z-50 fixed bottom-30 right-5 ">
+      <div className="shadow-2xl z-50 fixed bottom-30 right-5 border-4 border-neutral-500">
         {show && 
           <iframe
             className="h-150 w-96"
