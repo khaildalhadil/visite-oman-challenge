@@ -4,24 +4,35 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LiaTripadvisor } from "react-icons/lia";
-import { jaccardSimilarity } from "./algorithm/jaccard";
-import { seasonFit } from "./algorithm/seasonFit";
-import getDestinationByIds from "./getDestinationByIds";
-import getDestinationsByIds from "./getDestinationByIds";
+// import getDestinationByIds from "./getDestinationByIds";
+// import getDestinationsByIds from "./getDestinationByIds";
 import { useFavoriteStore } from "@/app/store/useFavoriteStore";
-import normalize from "./algorithm/normalize";
-import { categories } from "./add-trip/PlanTripForm";
+import calculateDestinationScore, { sortAndTopDestinations } from "./algorithm/scoreDestination";
+import { allocateRegions } from "./allocateRegions";
+import { buildItinerary } from "./algorithm/buildItinerary";
+import Days from "./Days";
 
 export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
   // userPrefs interests
-  const [userPrefsInterests, setUserPrefsInterests] = useState<RavoriteDestinations>();
+  const [userformInterests, setUserformInterests] = useState<FavoriteDestinations>();
   const [destinationCategories, setDestinationCategories] = useState<Destination[]>();
 
   const favorites = useFavoriteStore((state)=> state.favorites)
   const ids = new Set(favorites);
   const savedPlaces = allPlaces.filter(place => ids.has(place.id));
-  const userCategories = savedPlaces.flatMap(place => place.categories);
+  
+  const result = calculateDestinationScore(userformInterests, savedPlaces);
+  const allocateRegionsSorted = sortAndTopDestinations(result, userformInterests)
+  const data = allocateRegions(allocateRegionsSorted, userformInterests?.tripDays);
+
+  const itinerary = buildItinerary(
+    allocateRegionsSorted,
+    data,
+    userformInterests?.tripDays,
+    userformInterests?.intensity
+  )
+  
   
   useEffect(() => {
 
@@ -29,39 +40,14 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
       if (typeof window !== 'undefined') {
         const allTripsString = localStorage.getItem("tripPreferences");
         if (allTripsString) {
-          setUserPrefsInterests(JSON.parse(allTripsString));
+          setUserformInterests(JSON.parse(allTripsString));
         }
       }
     }
     getDataFromLocalStro();
   }, []);
 
-
-  const interestScore = jaccardSimilarity(
-    userCategories,
-    categories
-  );
-
-  console.log(interestScore);
-
-  // const seasonScore = seasonFit(
-  //   userPrefs.travelMonth,
-  //   destination.recommended_months
-  // );
-
-  // const crowdScore = normalize(
-  //   destination.crowd_level,
-  //   1,
-  //   5
-  // );
-
-  // const costScore = normalize(
-  //   destination.ticket_cost_omr,
-  //   0,
-  //   20
-  // );
-  
-  if (!userPrefsInterests) {
+if (!userformInterests) {
     return (
       <div className="my-10 flex flex-col items-center gap-3 justify-center text-lg">
         <LiaTripadvisor className="text-5xl" />
@@ -69,7 +55,7 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
         <p>No Trip Found</p>
         <Link
           className="border p-2 border-neutral-400 rounded"
-          href={"/planner/add-trip"}
+          href={"/planner/upsert-tip"}
         >
           Add Trip Now
         </Link>
@@ -77,11 +63,20 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
     );
   }
 
-
+  if (!itinerary) return <div>Something went wrong</div>
   return (
     <div>
-      <p>{userPrefsInterests?.travelMonth}</p>
-      <p>{destinationCategories?.length}</p>
+      <div className="flex items-center justify-between mt-10">
+        <h1 className="font-bold text-2xl">Places To Visit</h1>
+        <div className="flex flex-col gap-3">
+          <Link href={"/planner/upsert-tip"} className="bg-green-600 text-green-50 p-2 rounded cursor-pointer">Edit Your Trip</Link>
+          <button className="bg-red-600 text-red-100 p-2 rounded cursor-pointer">Delete This Tip</button>
+
+        </div>
+      </div>
+      {itinerary.map((place, i) => (
+        <Days key={i} place={place} />
+      ))}
     </div>
-  )
+  );
 }

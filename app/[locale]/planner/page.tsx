@@ -9,11 +9,7 @@ export default async function page() {
 
   return (
     <div>
-      
-
-      
       <AllPlan allPlaces={allPlaces} />
-
     </div>
   )
 }

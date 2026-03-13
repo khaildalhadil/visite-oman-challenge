@@ -40,7 +40,7 @@ export default function Place({place, imageId, addToDay, handleAdd}: {
         alt="place" 
         width={400}
         height={400}
-        className="rounded-2xl"
+        className="rounded-2xl w-full"
         placeholder="blur"
         blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlMGUwZTAiIC8+PC9zdmc+"
       />

@@ -76,3 +76,11 @@ export const seasonMap: Record<string, number> = {
   December: 12,
   ديسمبر: 12,
 };
+
+// weights.ts
+export const SCORE_WEIGHTS = {
+  interest: 0.4,
+  season: 0.3,
+  crowd: 0.15,
+  cost: 0.15,
+};

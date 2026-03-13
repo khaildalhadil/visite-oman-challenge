@@ -46,12 +46,37 @@ declare global {
     setTheme: (b: boolean) => void;
   }
 
-  type RavoriteDestinations = {
+  type FavoriteDestinations = {
     tripDays: number
     budgetTier: string
     travelMonth: number
-    intensity: string
+    intensity: "relaxed" | "balanced" | "intense"
     userCategories: string[]
  }
+
+  type Region = {
+    name: string;
+    destinations: Destination[];
+    avgSeasonFit: number; // متوسط SeasonFit لكل الوجهات في المنطقة
+  };
+
+  type DestinationScore = {
+    id: string;
+    name: string;
+    region: string;
+    score: number;
+  };
+
+  
+  type RegionScore = {
+    region: string;
+    score: number;
+  };
+
+  type DayPlan = {
+    day: number
+    places: DestinationScore[]
+  }
+
 
 }

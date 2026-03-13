@@ -9,7 +9,6 @@ import { usePathname } from "@/i18n/navigation";
 import useBearStore from "../store/useDarkMode";
 import { BsSun } from "react-icons/bs";
 
-
 export default function Header() {
 
   const t = useTranslations('HeaderPage')
@@ -23,7 +22,6 @@ export default function Header() {
 
   const themeLight = useBearStore(state => state.themeLight)
   const setTheme = useBearStore(state => state.setTheme)
-
   const pathname = usePathname();
 
   return (
@@ -34,7 +32,7 @@ export default function Header() {
         width={100}
         height={100}
         />
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex items-center gap-5 text-lg">
             {
               navLinks.map(

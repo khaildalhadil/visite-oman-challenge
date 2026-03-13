@@ -11,7 +11,7 @@ export default function SavedInterests({allPlaces}: {allPlaces: Destination[]}) 
   const savedPlaces = allPlaces.filter(place => ids.has(place.id));
 
   function handelAddBtn(id: string) {
-    console.log(`add ${id}`);
+    // console.log(`add ${id}`);
   }
 
   if (!favorites.length) {
@@ -28,7 +28,7 @@ export default function SavedInterests({allPlaces}: {allPlaces: Destination[]}) 
   return (
     <section className="my-10">
       <h2 className="my-5 text-3xl">Saved Interests</h2>
-      <ul className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-5">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_1fr_1fr_1fr] gap-5">
         {
           savedPlaces.map((place, i) =>
           <Place key={i} imageId={i} place={place} addToDay={true}
