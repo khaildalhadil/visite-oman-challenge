@@ -26,7 +26,7 @@ export default function DestinationsPageHeader() {
    *  recommended season ✔
    */
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex flex-col mb-3 md:flex-row md:justify-between md:items-center">
 
       <h1 className="text-2xl my-11 font-bold">
         {t("title")}

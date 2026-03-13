@@ -9,7 +9,7 @@ export default function Destinations({listOfPlaces}: Props) {
 
 
   return (
-    <ul className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-5">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_1fr_1fr_1fr] gap-5">
       {listOfPlaces.map((place, i) =><Place key={i} imageId={i} place={place} />)}
     </ul> 
   )
