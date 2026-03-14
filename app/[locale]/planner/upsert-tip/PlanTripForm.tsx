@@ -1,6 +1,7 @@
 "use client";
 
 import { getPlaces } from "@/app/lib/data";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -36,6 +37,8 @@ function getPreferredCategories(allPlaces: Destination[]): Category[] {
 export default function PlanTripForm() {
   const [allPlaces, setAllPlaces] = useState<Destination[] | []>([])
   const [dataFromLocalSto, setDataFromLocalSto] = useState<null | FavoriteDestinations>(null);
+
+  const t = useTranslations("formTrip")
 
   const router = useRouter();
 
@@ -92,7 +95,7 @@ export default function PlanTripForm() {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
-        {dataFromLocalSto ? "Update Your Tip" : "Add New Trip"}
+        {dataFromLocalSto ? t("upBtn"): t("newBtn")}  
       </h1>
 
       <form
@@ -101,7 +104,7 @@ export default function PlanTripForm() {
       >
         {/* Trip Duration */}
         <div>
-          <label className="block font-medium mb-1">Trip Duration (days)</label>
+          <label className="block font-medium mb-1">{t("duration")}</label>
 
           <input
             type="number"
@@ -118,7 +121,7 @@ export default function PlanTripForm() {
         {/* Budget */}
         <div>
           <label className="block font-medium mb-1" htmlFor="mySelect">
-            Budget Tier
+            {t("budget")}
           </label>
 
           <select
@@ -128,7 +131,7 @@ export default function PlanTripForm() {
           >
             {budgetTierOptions.map((option) => (
               <option key={option.value} value={option.value} >
-                {option.value}
+                {t(`budgetList.${option.value}`)}
               </option>
             ))}
           </select>
@@ -139,7 +142,7 @@ export default function PlanTripForm() {
 
         {/* Month */}
         <div>
-          <label className="block font-medium mb-1">Travel Month</label>
+          <label className="block font-medium mb-1">{t("month")}</label>
 
           <select
             {...register("travelMonth")}
@@ -147,7 +150,7 @@ export default function PlanTripForm() {
           >
             {Array.from({ length: 12 }, (_, i) => (
               <option key={i} value={i + 1}>
-                {new Date(0, i).toLocaleString("en", { month: "long" })}
+                {1+i}
               </option>
             ))}
           </select>
@@ -155,7 +158,7 @@ export default function PlanTripForm() {
 
         {/* Intensity */}
         <div>
-          <label className="block font-medium mb-1">Travel Intensity</label>
+          <label className="block font-medium mb-1">{t("intensity")}</label>
 
           <select
             // value={intensity}
@@ -165,7 +168,7 @@ export default function PlanTripForm() {
           >
             {RelaxOptions.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {t(`relaxOptions.${option.value}`)}
               </option>
             ))}
           </select>
@@ -173,7 +176,7 @@ export default function PlanTripForm() {
 
         {/* Interests */}
         <div>
-          <label className="block font-medium mb-2">Interests</label>
+          <label className="block font-medium mb-2">{t("interests")}</label>
 
           <div className="grid grid-cols-2 gap-3">
             {categories.map((category) => (
@@ -187,7 +190,7 @@ export default function PlanTripForm() {
                   {...register("userCategories")}
                   // className="hidden"
                 />
-                {category}
+                {t(`categories.${category}`)}
               </label>
             ))}
           </div>
@@ -201,7 +204,10 @@ export default function PlanTripForm() {
           type="submit"
           className="w-full bg-black text-white py-3 rounded-lg hover:opacity-90 cursor-pointer"
         >
-          {dataFromLocalSto ? "Update " :"Save"}  Preferences
+
+          {dataFromLocalSto ? t("upBtn"): t("newBtn")}  
+          
+          
         </button>
       </form>
     </div>

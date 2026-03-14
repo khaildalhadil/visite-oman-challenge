@@ -80,6 +80,43 @@
     }
 
   },
+  "planner": {
+    "oops": "Oops",
+    "noTrip": "No Trip Found",
+    "btn": "Add Trip Now",
+    "header": "Your Plan",
+    "btnEdit": "Edit Your Trip",
+    "btnDelete": "Delete This Trip",
+    "deleteMessage": "Are You Sure Want To Delete This Trip",
+    "d": "Delete"
+  },
+  "formTrip": {
+    "duration":"Trip Duration (days)",
+    "budget": "Budget Tier",
+    "month": "Travel Month",
+    "intensity": "Travel Intensity",
+    "interests": "Interests",
+    "upBtn": "Update Preferences",
+    "newBtn": "Save Preferences",
+    "categories": {
+      "culture": "Culture",
+      "food": "Food",
+      "nature": "Nature",
+      "beach": "Beach",
+      "mountain": "Mountain",
+      "desert": "Desert"
+    },
+    "budgetList": {
+      "low": "Low",
+      "medium": "Medium",
+      "luxury": "Luxury"
+    },
+    "relaxOptions": {
+      "relaxed": "Relaxed (3 stops/day)",
+      "balanced": "Balanced (4 stops/day)",
+      "packed": "Packed (5 stops/day)"
+    }
+  },
   "footer": {
     "logo": "Visit Oman",
     "home": "Home",
