@@ -11,12 +11,16 @@ import calculateDestinationScore, { sortAndTopDestinations } from "./algorithm/s
 import { allocateRegions } from "./allocateRegions";
 import { buildItinerary } from "./algorithm/buildItinerary";
 import Days from "./Days";
+import Modal from "./components/Modal";
+import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
   // userPrefs interests
   const [userformInterests, setUserformInterests] = useState<FavoriteDestinations>();
   const [destinationCategories, setDestinationCategories] = useState<Destination[]>();
+  const [isModalOpenToDelete, setIsModalOpenToDelete] = useState<boolean>(false);
 
   const favorites = useFavoriteStore((state)=> state.favorites)
   const ids = new Set(favorites);
@@ -32,6 +36,8 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
     userformInterests?.tripDays,
     userformInterests?.intensity
   )
+
+  const t = useTranslations("planner")
   
   
   useEffect(() => {
@@ -45,19 +51,26 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
       }
     }
     getDataFromLocalStro();
-  }, []);
+  }, [isModalOpenToDelete, setIsModalOpenToDelete]);
+
+  function handleDeleteTrip() {
+    localStorage.removeItem("tripPreferences");
+    setIsModalOpenToDelete(false);
+    setUserformInterests(undefined)
+    toast.success("Trip deleted Successfully")
+  }
 
 if (!userformInterests) {
     return (
       <div className="my-10 flex flex-col items-center gap-3 justify-center text-lg">
         <LiaTripadvisor className="text-5xl" />
-        <h1 className="text-4xl">Oops! </h1>
-        <p>No Trip Found</p>
+        <h1 className="text-4xl">{t("oops")}</h1>
+        <p>{t("noTrip")}</p>
         <Link
-          className="border p-2 border-neutral-400 rounded"
+          className="border p-2 border-neutral-400 rounded bg-green-700 text-green-100 cursor-pointer"
           href={"/planner/upsert-tip"}
         >
-          Add Trip Now
+          {t("btn")}
         </Link>
       </div>
     );
@@ -67,13 +80,30 @@ if (!userformInterests) {
   return (
     <div>
       <div className="flex items-center justify-between mt-10">
-        <h1 className="font-bold text-2xl">Places To Visit</h1>
+        <h1 className="font-bold text-2xl">{t("header")}</h1>
         <div className="flex flex-col gap-3">
-          <Link href={"/planner/upsert-tip"} className="bg-green-600 text-green-50 p-2 rounded cursor-pointer">Edit Your Trip</Link>
-          <button className="bg-red-600 text-red-100 p-2 rounded cursor-pointer">Delete This Tip</button>
+
+          <Link href={"/planner/upsert-tip"} className="bg-green-600 text-green-50 p-2 rounded cursor-pointer">{t("btnEdit")}</Link>
+
+
+          <button className="bg-red-600 text-red-100 p-2 rounded cursor-pointer"
+            onClick={()=> setIsModalOpenToDelete(true)}
+            >
+            {t("btnDelete")}
+          </button>
 
         </div>
       </div>
+      {
+        isModalOpenToDelete && 
+          <Modal setIsOpen={setIsModalOpenToDelete} >
+            <p className="p-3 text-2xl font-bold">{t("deleteMessage")}</p>
+            <button 
+              className="bg-red-600 w-fit mb-10 px-2 py-1 text-red-50 cursor-pointer rounded "
+              onClick={handleDeleteTrip}
+              >{t("d")}</button>
+          </Modal>
+      }
       {itinerary.map((place, i) => (
         <Days key={i} place={place} />
       ))}
