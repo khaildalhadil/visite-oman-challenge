@@ -1,5 +1,3 @@
-
-
 export function allocateRegions(
   destinations: DestinationScore[] | undefined,
   tripDays: number| undefined

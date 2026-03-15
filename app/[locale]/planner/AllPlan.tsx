@@ -1,11 +1,8 @@
-
 'use client'
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LiaTripadvisor } from "react-icons/lia";
-// import getDestinationByIds from "./getDestinationByIds";
-// import getDestinationsByIds from "./getDestinationByIds";
 import { useFavoriteStore } from "@/app/store/useFavoriteStore";
 import calculateDestinationScore, { sortAndTopDestinations } from "./algorithm/scoreDestination";
 import { allocateRegions } from "./allocateRegions";
@@ -17,11 +14,10 @@ import { useTranslations } from "next-intl";
 
 export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
-  // userPrefs interests
   const [userformInterests, setUserformInterests] = useState<FavoriteDestinations>();
-  const [destinationCategories, setDestinationCategories] = useState<Destination[]>();
   const [isModalOpenToDelete, setIsModalOpenToDelete] = useState<boolean>(false);
 
+  // GET favrites from local storage by zustned
   const favorites = useFavoriteStore((state)=> state.favorites)
   const ids = new Set(favorites);
   const savedPlaces = allPlaces.filter(place => ids.has(place.id));
@@ -39,9 +35,7 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
   const t = useTranslations("planner")
   
-  
   useEffect(() => {
-
     async function getDataFromLocalStro(){
       if (typeof window !== 'undefined') {
         const allTripsString = localStorage.getItem("tripPreferences");
@@ -60,7 +54,7 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
     toast.success("Trip deleted Successfully")
   }
 
-if (!userformInterests) {
+  if (!userformInterests) {
     return (
       <div className="my-10 flex flex-col items-center gap-3 justify-center text-lg">
         <LiaTripadvisor className="text-5xl" />
@@ -77,6 +71,7 @@ if (!userformInterests) {
   }
 
   if (!itinerary) return <div>Something went wrong</div>
+
   return (
     <div>
       <div className="flex items-center justify-between mt-10">
@@ -84,7 +79,6 @@ if (!userformInterests) {
         <div className="flex flex-col gap-3">
 
           <Link href={"/planner/upsert-tip"} className="bg-green-600 text-green-50 p-2 rounded cursor-pointer">{t("btnEdit")}</Link>
-
 
           <button className="bg-red-600 text-red-100 p-2 rounded cursor-pointer"
             onClick={()=> setIsModalOpenToDelete(true)}

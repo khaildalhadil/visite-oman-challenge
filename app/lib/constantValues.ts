@@ -1,4 +1,4 @@
-
+// this file to share const value across multiple file
 export const Per_Page = 20;
 
 export const CrowdColor = {

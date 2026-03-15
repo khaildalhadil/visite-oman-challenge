@@ -9,7 +9,7 @@ import { cache } from "react";
  */
 
 export const getPlaces = cache(async () => {  
-
+  // I can use fs and get data in json file but I url to make it like api 
   const res = await fetch("https://raw.githubusercontent.com/rihal-om/rihal-codestacker/refs/heads/main/FE/data.json"); 
 
   if (!res.ok) {

@@ -3,8 +3,8 @@ import SavedInterests from "./SavedInterests";
 
 export default async function page() {
 
+  // get data in server side to pass it to client component
   const allPlaces: Destination[] = await getPlaces();
-
 
   return (
     

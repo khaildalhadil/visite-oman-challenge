@@ -12,6 +12,7 @@ export default function Days({place}: {place: DayPlan}) {
           {place.places.map((p, i)=> (
             <li key={p.id} className="flex items-center gap-3 border border-neutral-200 p-2">
               <Image
+                // I use this url to make rnadom image 
                 src={`https://picsum.photos/id/${10 + i}/1000/1300`}
                 alt="place" 
                 width={100}

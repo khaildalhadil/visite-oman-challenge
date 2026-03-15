@@ -1,4 +1,5 @@
 'use client'
+
 import { useFavoriteStore } from "@/app/store/useFavoriteStore";
 import Link from "next/link";
 import Place from "../destinations/Place";
@@ -9,10 +10,6 @@ export default function SavedInterests({allPlaces}: {allPlaces: Destination[]}) 
   const favorites = useFavoriteStore((state)=> state.favorites)
   const ids = new Set(favorites);
   const savedPlaces = allPlaces.filter(place => ids.has(place.id));
-
-  function handelAddBtn(id: string) {
-    // console.log(`add ${id}`);
-  }
 
   if (!favorites.length) {
     return (
@@ -32,7 +29,7 @@ export default function SavedInterests({allPlaces}: {allPlaces: Destination[]}) 
         {
           savedPlaces.map((place, i) =>
           <Place key={i} imageId={i} place={place} addToDay={true}
-            handleAdd={()=> handelAddBtn(place.id)}
+            
           />)
         }
       </ul> 

@@ -25,9 +25,6 @@ const Map = ({ zoom = defaults.zoom, posix, name }: MapProps) => {
       center={posix} 
       zoom={zoom}
        scrollWheelZoom={false}
-      // zoom={zoom}
-      // center={posix}
-      // scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}
     >
     <TileLayer
