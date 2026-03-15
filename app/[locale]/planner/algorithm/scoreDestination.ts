@@ -12,11 +12,14 @@ export default function calculateDestinationScore(
   if(!favoritesDestinations) return null;
 
   const scoredDestinations = savedPlaces.map((place) => {
+
+    // Jaccard algo interection user favorite categories / union user favorite categories + userCategories
     const interestScore = jaccardSimilarity(
       place.categories,
       favoritesDestinations?.userCategories
     );
   
+    // check if season fit
     const seasonScore = seasonFit(
       favoritesDestinations?.travelMonth,
       place.recommended_months
@@ -30,7 +33,9 @@ export default function calculateDestinationScore(
   
     const costScore = normalize(
       place.ticket_cost_omr,
+      // min
       0,
+      // max
       20
     );
 

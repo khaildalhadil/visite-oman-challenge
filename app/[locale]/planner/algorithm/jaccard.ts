@@ -12,17 +12,16 @@ export function jaccardSimilarity(
   
   for (const cat of userSet) {
     if (destSet.has(cat)) {
+      // add one it we have same category in both array user form and user fav
       intersection++;
     }
   }
   
+  // get length of the union
   const union = new Set([
     ...userCategories,
     ...destinationCategories
   ]).size;
-
-  // console.log(userCategories)
-  // console.log(destinationCategories)
 
   if (union === 0) return 0;
 

@@ -17,12 +17,16 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
   const [userformInterests, setUserformInterests] = useState<FavoriteDestinations>();
   const [isModalOpenToDelete, setIsModalOpenToDelete] = useState<boolean>(false);
 
-  // GET favrites from local storage by zustned
+  // GET favorite destinations (IDs) from local storage by zustned
   const favorites = useFavoriteStore((state)=> state.favorites)
+  // my it from array to set to use has a and this make it O(1) in time compli
   const ids = new Set(favorites);
-  const savedPlaces = allPlaces.filter(place => ids.has(place.id));
+  // gate all favorites place 
+  const userFavoritesPlaces = allPlaces.filter(place => ids.has(place.id));
   
-  const result = calculateDestinationScore(userformInterests, savedPlaces);
+  // give each favorite destination score prop
+  const result = calculateDestinationScore(userformInterests, userFavoritesPlaces);
+  console.log(result);
   const allocateRegionsSorted = sortAndTopDestinations(result, userformInterests)
   const data = allocateRegions(allocateRegionsSorted, userformInterests?.tripDays);
 
