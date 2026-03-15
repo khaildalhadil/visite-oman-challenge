@@ -147,6 +147,7 @@ export default function DestinatoinMoreDetails({destination}: {destination: Dest
           <SingleCardSkeleto />
         </div>
       )}
+      {/* placeholders without any content  */}
 
       {focus == "included" && (
         <div className="m-20 grid grid-cols-3 grid-rows-3 gap-10">
