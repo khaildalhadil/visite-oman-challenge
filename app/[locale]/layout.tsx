@@ -11,7 +11,6 @@ import Chat from "../components/Chat";
 import ThemeProvider from "../components/ThemeContext";
 import { ToastContainer } from "react-toastify";
 
-
 export const metadata: Metadata = {
   title: "Visit Oman",
   description: "Visit Oman is a travel guide application that helps you discover the most beautiful destinations across Oman including beaches, mountains, deserts, and historical landmarks. Explore culture, adventure, nature, and hidden gems throughout the Sultanate of Oman.",

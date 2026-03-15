@@ -2,11 +2,9 @@ import Place from "./Place"
 
 type Props = {
   listOfPlaces: Destination[],
-  
 }
 
 export default function Destinations({listOfPlaces}: Props) {
-
 
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_1fr_1fr_1fr] gap-5">

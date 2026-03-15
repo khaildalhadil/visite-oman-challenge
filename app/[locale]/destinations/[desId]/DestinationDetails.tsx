@@ -2,38 +2,18 @@
 
 import { CrowdColor } from '@/app/lib/constantValues'
 import { useTranslations } from 'next-intl'
-import { CiBookmark, CiLocationOn, CiShare2 } from 'react-icons/ci'
+import { CiLocationOn, CiShare2 } from 'react-icons/ci'
 import Figures from './Figures'
 import { useParams } from 'next/navigation'
-import DestinatoinMoreDetils from './DestinatoinMoreDetils'
+import DestinatoinMoreDetils from './DestinationMoreDetails'
 import { useFavoriteStore } from '@/app/store/useFavoriteStore'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 type Props = {
   destination: Destination
 }
-/**
- * 
- *{
-      id: 'dest_0194',
-      name: { en: 'Ibri Fort', ar: 'حصن عبري' },
-      lat: 23.582836,
-      lng: 56.64503,
-      region: { en: 'Dhahira', ar: 'الظاهرة' },
-      categories: [ 'culture' ],
-      company: { en: 'Oman Heritage Sites', ar: 'مواقع التراث العماني' },
-      avg_visit_duration_minutes: 360,
-      ticket_cost_omr: 0,
-      recommended_months: [
-        1, 2,  3,  4, 5,
-        6, 9, 10, 12
-      ],
-      crowd_level: 5
-    }
- * @returns 
- */
 
-const DestinationDetils = ({destination}: Props) => {
+const DestinationDetails = ({destination}: Props) => {
 
   const searchParams = useParams();
   const locale = searchParams.locale ?? "en";
@@ -83,4 +63,4 @@ const DestinationDetils = ({destination}: Props) => {
     </div>
   );
 }
-export default DestinationDetils
+export default DestinationDetails

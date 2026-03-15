@@ -45,13 +45,13 @@ export default function PlanTripForm() {
    const {
      register,
      handleSubmit,
-     watch,
      reset,
      formState: { errors },
    } = useForm<FavoriteDestinations>({ defaultValues: dataFromLocalSto || {} });
 
 
   useEffect(() => {
+
     async function getAllPlaces() {
       const allPlaces = await getPlaces();
       setAllPlaces(allPlaces);
@@ -63,11 +63,13 @@ export default function PlanTripForm() {
       if (userDataAsString) {
         const userDataAsJSON = JSON.parse(userDataAsString);
         setDataFromLocalSto(userDataAsJSON);
+        
+        // reset to make default values to the form 
         reset(userDataAsJSON);
-      }else {
-      reset({
-        userCategories: preferredCategories
-      });
+      } else {
+        reset({
+          userCategories: preferredCategories,
+        });
       }
     }
 
@@ -75,15 +77,15 @@ export default function PlanTripForm() {
   }, [reset]);
 
   const budgetTierOptions = [
-    { label: 'Low', value: 'low' },
-    { label: 'Medium', value: 'medium' },
-    { label: 'Luxury', value: 'luxury' },
+    { value: 'low' },
+    { value: 'medium' },
+    { value: 'luxury' },
   ];
 
   const RelaxOptions = [
-    { label: 'Relaxed (3 stops/day)', value: 'relaxed' },
-    { label: 'Balanced (4 stops/day)', value: 'balanced' },
-    { label: 'Packed (5 stops/day)', value: 'packed' },
+    { value: 'relaxed' },
+    { value: 'balanced' },
+    { value: 'packed' },
   ];
 
   function onSubmit(data: FavoriteDestinations) {

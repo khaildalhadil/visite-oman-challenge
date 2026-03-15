@@ -8,7 +8,7 @@ import calculateDestinationScore, { sortAndTopDestinations } from "./algorithm/s
 import { allocateRegions } from "./allocateRegions";
 import { buildItinerary } from "./algorithm/buildItinerary";
 import Days from "./Days";
-import Modal from "./components/Modal";
+import Modal from "../../components/Modal";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 
