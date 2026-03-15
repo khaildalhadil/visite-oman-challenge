@@ -1,5 +1,5 @@
 import { getPlaces } from "@/app/lib/data";
-import DestinationDetils from "./DestinationDetils";
+import DestinationDetils from "./DestinationDetails";
 
 export default async function page({ params }: { params: Promise<{ desId: string }> }) {
 

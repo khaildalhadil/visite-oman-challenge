@@ -16,7 +16,6 @@ export function jaccardSimilarity(
     }
   }
   
-
   const union = new Set([
     ...userCategories,
     ...destinationCategories

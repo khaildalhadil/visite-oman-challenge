@@ -18,7 +18,6 @@ export default async function Page({searchParams}: props) {
   let result: Destination[] | [] = [];
   
   // filter region
-  // let filterByRegion = allPlaces;
   const region: string = searchParam['region']?.toString() ?? 'all';
 
   result =

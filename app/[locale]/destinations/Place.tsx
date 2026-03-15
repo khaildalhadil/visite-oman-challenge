@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image"
 import Link from "next/link";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { toast } from "react-toastify";
 
 export default function Place({place, imageId, addToDay, handleAdd}: {
     place: Destination, imageId: number,addToDay?: boolean, handleAdd?: ()=> void;
@@ -29,15 +28,16 @@ export default function Place({place, imageId, addToDay, handleAdd}: {
 
   return (
     <li className="flex flex-col relative transition duration-400 hover:-translate-y-2 w-full">
-      <button 
-        onClick={()=> toggleFavorite(place.id)}
-        className="absolute top-0 right-0 m-3 cursor-pointer bg-gray-300/50 p-2 rounded-full text-red-600 text-2xl">
-          {favorites.includes(place.id) ? <FaHeart /> : <FaRegHeart />}
+      <button
+        onClick={() => toggleFavorite(place.id)}
+        className="absolute top-0 right-0 m-3 cursor-pointer bg-gray-300/50 p-2 rounded-full text-red-600 text-2xl"
+      >
+        {favorites.includes(place.id) ? <FaHeart /> : <FaRegHeart />}
       </button>
 
       <Image
-        src={`https://picsum.photos/id/${imageId+10}/1000/1300`}
-        alt="place" 
+        src={`https://picsum.photos/id/${imageId + 10}/1000/1300`}
+        alt="place"
         width={400}
         height={400}
         className="rounded-2xl w-full"
@@ -49,39 +49,54 @@ export default function Place({place, imageId, addToDay, handleAdd}: {
         <div className="flex justify-between">
           <h3 className="font-bold">{placeName}</h3>
           <p className="bg-gray-400/30 px-2 rounded-full">
-            {min >= 60 ? 
-              `h ${min / 60}`
-              : `m ${min}`}</p>
+            {min >= 60 ? `h ${min / 60}` : `m ${min}`}
+          </p>
         </div>
         <p className="">{t("description")}</p>
 
         <div className="">
           <div className="flex gap-3 py-1 text-sm mb-2">
-            <span className="bg-gray-400/30 px-2 rounded-full">{placeLocation}</span>
+            <span className="bg-gray-400/30 px-2 rounded-full">
+              {placeLocation}
+            </span>
             <span
               className={`${CrowdColor[crowd]} bg-gray-400/30 px-2 rounded-full `}
-            >{crowdState}</span>
+            >
+              {crowdState}
+            </span>
           </div>
           <div className="mb-2 flex gap-2">
             {place.categories.map((category, index) => (
-              <span key={index} className="bg-gray-400/30 px-2 rounded-full">{
-                t(`categories.${category}`)
-                }</span>
+              <span key={index} className="bg-gray-400/30 px-2 rounded-full">
+                {t(`categories.${category}`)}
+              </span>
             ))}
 
             <span className="bg-gray-400/30 px-2 rounded-full">
-                {cost} 
-                <span> Rial</span>
-              </span>
+              {cost}
+              <span> Rial</span>
+            </span>
           </div>
           <span></span>
         </div>
 
         <div className="">
-          <Link href={`/destinations/${place.id}`} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100 ">{t("seeMore")}</Link>
-          {addToDay && <button onClick={handleAdd} className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100  cursor-pointer">+ Add to Day</button>}
+          <Link
+            href={`/destinations/${place.id}`}
+            className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100 "
+          >
+            {t("seeMore")}
+          </Link>
+          {addToDay && (
+            <button
+              onClick={handleAdd}
+              className="bg-white my-1 font- block w-full text-gray-900 text-center p-2 rounded-3xl hover:bg-neutral-100  cursor-pointer"
+            >
+              + Add to Day
+            </button>
+          )}
         </div>
       </div>
     </li>
-  )
+  );
 }

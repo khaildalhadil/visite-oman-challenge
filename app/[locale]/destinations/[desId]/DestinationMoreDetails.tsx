@@ -1,4 +1,5 @@
 'use clint'
+
 import Map from "@/app/components/Map";
 import SingleCardSkeleto from "@/app/components/SingleCardSkeleto";
 import { LatLngExpression } from "leaflet";
@@ -12,7 +13,7 @@ import { GiFlyingFox, GiSherlockHolmes } from "react-icons/gi";
 import { IoIosWalk } from "react-icons/io";
 import { MdAirlineSeatReclineExtra } from "react-icons/md";
 
-export default function DestinatoinMoreDetils({destination}: {destination: Destination}) {
+export default function DestinatoinMoreDetails({destination}: {destination: Destination}) {
 
   const [focus, setFocus] = useState<string>("Overview")
 
@@ -23,7 +24,7 @@ export default function DestinatoinMoreDetils({destination}: {destination: Desti
   const position: LatLngExpression = [destination.lat, destination.lng];
   const time = destination.avg_visit_duration_minutes;
 
-  const t = useTranslations("DestinationsPage");
+  const t = useTranslations("DestinationMoreDetails");
 
   return (
     <div className="my-10 border-neutral-200 pb-3">
@@ -32,25 +33,25 @@ export default function DestinatoinMoreDetils({destination}: {destination: Desti
           onClick={() => setFocus("Overview")}
           className={`relative ${focus == "Overview" ? "focusLink text-neutral-800" : "text-neutral-400"} cursor-pointer`}
         >
-          Overview
+          {t("Overview")}
         </li>
         <li
           onClick={() => setFocus("Location")}
           className={`relative ${focus == "Location" ? "focusLink text-neutral-800" : "text-neutral-400"} cursor-pointer`}
         >
-          Location
+          {t("Location")}
         </li>
         <li
           onClick={() => setFocus("included")}
           className={`relative ${focus == "included" ? "focusLink text-neutral-800" : "text-neutral-400"} cursor-pointer`}
         >
-          What&apos;s included
+          {t("Include")}
         </li>
         <li
           onClick={() => setFocus("Reviews")}
           className={`relative ${focus == "Reviews" ? "focusLink text-neutral-800" : "text-neutral-400"} cursor-pointer`}
         >
-          Reviews
+          {t("Reviews")}
         </li>
       </ul>
 
@@ -61,21 +62,18 @@ export default function DestinatoinMoreDetils({destination}: {destination: Desti
             <div className="flex-3">
               <div>
                 <h2 className=" text-2xl font-bold mb-2">
-                  About the {placeName}
+                  {t("About")} {placeName}
                 </h2>
-                <p>
-                  {placeName} is a historic landmark located in the {locale}{" "}
-                  region of Oman. Managed by {destination.company.en}, the site reflects
-                  the rich cultural heritage of the area and is categorized
-                  under {destination.categories[0]} tourism. Visitors usually spend around 
-                   {time > 60 ?`${time/ 60} hours` : ` ${time } min`}  exploring the fort
-                  and its surroundings. The site is open to visitors with a
-                  ticket cost of {destination.ticket_cost_omr} OMR, making it an accessible
-                  destination for everyone. The best time to visit is during the
-                  recommended months: {destination.recommended_months.join(", ")}. The
-                  location typically experiences a crowd level of {destination.crowd_level}
-                  /5 , which means it can be quite lively during peak times.
-                </p>
+                {t("description", {
+                  placeName,
+                  // region: locale,
+                  company: destination.company.en,
+                  category: destination.categories[0],
+                  time: time > 60 ? `${time / 60} hours` : `${time} min`,
+                  price: destination.ticket_cost_omr,
+                  months: destination.recommended_months.join(", "),
+                  crowd: destination.crowd_level,
+                })}
               </div>
 
               <div className="mt-10">
@@ -120,9 +118,12 @@ export default function DestinatoinMoreDetils({destination}: {destination: Desti
 
             <div className="border border-neutral-100 flex-1 p-2 h-fit shadow">
               <p className="font-bold text-2xl">
-                {cost == 0 ? "For Free 💸" : `ticket cost omr ${cost} `}
+                {cost == 0 ? t("Free") : `${t("Cost")} ${cost}`}
               </p>
-              <button className="bg-green-700 text-green-50 w-full block rounded-full p-2 text-lg cursor-pointer mt-10">
+              <button
+                disabled
+                className="bg-green-700 text-green-50 w-full block rounded-full p-2 text-lg cursor-pointer mt-10"
+              >
                 Book Now
               </button>
             </div>

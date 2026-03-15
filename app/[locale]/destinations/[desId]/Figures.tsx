@@ -1,6 +1,8 @@
 import Image from 'next/image'
 
 export default function Figures() {
+
+  // I should be dry here 
   return (
     <div className="grid grid-cols-[2fr_1fr_1fr] grid-rows-[1fr_1fr] mt-10 gap-3 h-125 relative">
       <figure className="overflow-hidden bg-red-200 row-start-1 row-end-3 col-start-1 col-end-2 relative">

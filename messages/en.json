@@ -80,6 +80,16 @@
     }
 
   },
+  "DestinationMoreDetails": {
+    "Overview": "Overview",
+    "Location": "Location",
+    "Include": "What&apos;s included",
+    "Reviews": "Reviews",
+    "About": "About the",
+    "Free": "For Free 💸",
+    "Cost": "ticket cost omr",
+    "description": "{placeName} is a historic landmark located in the  Managed by {company}, the site reflects the rich cultural heritage of the area and is categorized under {category} tourism. Visitors usually spend around {time} exploring the fort and its surroundings. The site is open to visitors with a ticket cost of {price} OMR, making it an accessible destination for everyone. The best time to visit is during the recommended months: {months}. The location typically experiences a crowd level of {crowd}/5, which means it can be quite lively during peak times."
+  },
   "planner": {
     "oops": "Oops",
     "noTrip": "No Trip Found",
