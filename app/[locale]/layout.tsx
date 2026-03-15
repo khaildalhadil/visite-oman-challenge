@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Visit Oman",
-  description: "I will write it later",
+  description: "Visit Oman is a travel guide application that helps you discover the most beautiful destinations across Oman including beaches, mountains, deserts, and historical landmarks. Explore culture, adventure, nature, and hidden gems throughout the Sultanate of Oman.",
 };
 
 type Locales = "en" | "ar";
@@ -36,10 +36,14 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={inter.className} dir={locale === "en" ? "ltr": "rtl"}>
       <body className="text-gray-600 min-h-screen  dark:bg-neutral-800 dark:text-gray-100">
+
         <ToastContainer />
+
         <ThemeProvider>
+
           <NextIntlClientProvider>
             <div className="max-w-325 m-auto p-4">
+
               <Header />
             
               <main>
@@ -47,9 +51,12 @@ export default async function RootLayout({
               </main>
 
               <Footer />
+
             </div>
           </NextIntlClientProvider>
+
         </ThemeProvider>
+
         <Chat />
 
       </body>

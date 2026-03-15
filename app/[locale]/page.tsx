@@ -3,18 +3,9 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useTranslations } from "use-intl";
 
-type Locales = "en" | "ar";
 
-// params من Next.js
-interface PageParams {
-  params: {
-    locale: Locales;
-  }
-}
+export default function Home() {
 
-export default function Home({ params }: PageParams) {
-
-  // const t = await getTranslations('HomePage');
   const t = useTranslations('HomePage')
 
   return (

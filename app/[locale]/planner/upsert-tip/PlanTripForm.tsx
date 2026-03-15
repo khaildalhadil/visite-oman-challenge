@@ -94,14 +94,14 @@ export default function PlanTripForm() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
+      
       <h1 className="text-3xl font-bold mb-6">
         {dataFromLocalSto ? t("upBtn"): t("newBtn")}  
       </h1>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 bg-white shadow-lg rounded-xl p-6"
-      >
+        className="space-y-6 shadow-lg rounded-xl p-6 border" >
         {/* Trip Duration */}
         <div>
           <label className="block font-medium mb-1">{t("duration")}</label>
@@ -111,11 +111,17 @@ export default function PlanTripForm() {
             defaultValue={5}
             {...register("tripDays", {
               required: "Please Enter Trip Days",
-              max: 7,
-              min: 1,
+              max: {
+                value: 7,
+                message: "Trip Days should be less then 7 days"
+              },
+              min: {
+                value: 1,
+                message: "Trip Days should be more then 1 day"
+              },
             })}
-            className="w-full border rounded-lg p-2"
-          />
+            className="w-full border rounded-lg p-2" />
+          {errors.tripDays?.message && <p className="text-red-500">{errors.tripDays.message}</p>}
         </div>
 
         {/* Budget */}
@@ -127,17 +133,13 @@ export default function PlanTripForm() {
           <select
             className="w-full border rounded-lg p-2"
             id="mySelect"
-            {...register("budgetTier", { required: "Please select an option" })}
-          >
+            {...register("budgetTier", { required: "Please select an option" })} >
             {budgetTierOptions.map((option) => (
               <option key={option.value} value={option.value} >
                 {t(`budgetList.${option.value}`)}
               </option>
             ))}
           </select>
-          {/* {errors.mySelect && (
-            <p className="text-red-600">{errors.root?.message}</p>
-          )} */}
         </div>
 
         {/* Month */}
@@ -146,8 +148,7 @@ export default function PlanTripForm() {
 
           <select
             {...register("travelMonth")}
-            className="w-full border rounded-lg p-2"
-          >
+            className="w-full border rounded-lg p-2">
             {Array.from({ length: 12 }, (_, i) => (
               <option key={i} value={i + 1}>
                 {1+i}
@@ -161,11 +162,8 @@ export default function PlanTripForm() {
           <label className="block font-medium mb-1">{t("intensity")}</label>
 
           <select
-            // value={intensity}
-            // onChange={(e) => setIntensity(e.target.value)}
             {...register("intensity")}
-            className="w-full border rounded-lg p-2"
-          >
+            className="w-full border rounded-lg p-2">
             {RelaxOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {t(`relaxOptions.${option.value}`)}
@@ -187,27 +185,20 @@ export default function PlanTripForm() {
                 <input
                   type="checkbox"
                   value={category}
-                  {...register("userCategories")}
-                  // className="hidden"
+                  {...register("userCategories", {required: "You Should Select At Least One Category"})}
                 />
                 {t(`categories.${category}`)}
               </label>
             ))}
+            {errors.userCategories?.message && <p className="text-red-500">{errors.userCategories.message}</p>}
           </div>
         </div>
-
-        {/* Error */}
-        {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
 
         {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-black text-white py-3 rounded-lg hover:opacity-90 cursor-pointer"
-        >
-
+          className="w-full bg-black text-white py-3 rounded-lg hover:opacity-90 cursor-pointer">
           {dataFromLocalSto ? t("upBtn"): t("newBtn")}  
-          
-          
         </button>
       </form>
     </div>

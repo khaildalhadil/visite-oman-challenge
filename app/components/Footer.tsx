@@ -5,8 +5,6 @@ import Link from "next/link";
 import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 import { RxGithubLogo } from "react-icons/rx";
 
-
-
 export default function Footer() {
 
   const t = useTranslations("footer");

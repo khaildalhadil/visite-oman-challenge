@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { LiaTripadvisor } from 'react-icons/lia';
 import AllPlan from './AllPlan';
 import { getPlaces } from '@/app/lib/data';
 

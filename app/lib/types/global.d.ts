@@ -1,3 +1,4 @@
+// global type for type safety
 export {}
 declare global {
   type Destination = {
@@ -57,7 +58,7 @@ declare global {
   type Region = {
     name: string;
     destinations: Destination[];
-    avgSeasonFit: number; // متوسط SeasonFit لكل الوجهات في المنطقة
+    avgSeasonFit: number; 
   };
 
   type DestinationScore = {
