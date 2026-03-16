@@ -11,6 +11,7 @@ import Days from "./Days";
 import Modal from "../../components/Modal";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import { allocateDaysToRegions } from "./algorithm/allocateDaystoRegions";
 
 export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
@@ -24,17 +25,28 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
   // gate all favorites place 
   const userFavoritesPlaces = allPlaces.filter(place => ids.has(place.id));
   
-  // give each favorite destination score prop
+  // give each favorite destination score prop ✔ 
   const result = calculateDestinationScore(userformInterests, userFavoritesPlaces);
-  console.log(result);
+  
+  // sort and get only top this call Greedy ✔
   const allocateRegionsSorted = sortAndTopDestinations(result, userformInterests)
-  const data = allocateRegions(allocateRegionsSorted, userformInterests?.tripDays);
+  
+  // get regions and give them avg score and sort them ✔
+  const groupByRegion = allocateRegions(allocateRegionsSorted, userformInterests?.tripDays);
+
+  const daysToRegions = allocateDaysToRegions(
+    groupByRegion,
+    userformInterests?.tripDays
+  )
 
   const itinerary = buildItinerary(
     allocateRegionsSorted,
-    data,
+    daysToRegions,
     userformInterests?.tripDays,
-    userformInterests?.intensity
+    userformInterests?.intensity == "relaxed" ? 3
+      : userformInterests?.intensity == "balanced" ? 4
+      : userformInterests?.intensity == "packed" ? 5
+      : 0
   )
 
   const t = useTranslations("planner")

@@ -12,11 +12,11 @@ export function allocateRegions(
     if (!regionScores[dest.region]) {
       regionScores[dest.region] = [];
     }
-
     regionScores[dest.region].push(dest.score);
 
   });
-
+  
+  // caluc the avg
   const regionAvg: RegionScore[] = Object.entries(regionScores).map(
     ([region, scores]) => ({
       region,
@@ -24,6 +24,7 @@ export function allocateRegions(
     })
   );
 
+  // sort from high score to low
   regionAvg.sort((a, b) => b.score - a.score);
 
   return regionAvg;

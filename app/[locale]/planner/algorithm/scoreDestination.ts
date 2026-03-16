@@ -24,13 +24,15 @@ export default function calculateDestinationScore(
       favoritesDestinations?.travelMonth,
       place.recommended_months
     );
-  
+
+    // make the crowd value from 0 to 1
     const crowdScore = normalize(
       place.crowd_level,
       1,
       5
     );
   
+    // make the cost value from 0 to 1
     const costScore = normalize(
       place.ticket_cost_omr,
       // min
@@ -60,9 +62,9 @@ export default function calculateDestinationScore(
 export function sortAndTopDestinations(result: DestinationScore[] | null, userformInterests:FavoriteDestinations | undefined) {
   if (!result || !userformInterests) return;
 
-  const sortedResult = result.sort((per, next) =>  next.score - per.score);
+  // [...result] to not change result value in the heap
+  const sortedResult = [...result].sort((per, next) =>  next.score - per.score);
   const topDestinations = sortedResult.slice(0, userformInterests.tripDays * 3);
 
   return topDestinations;
-
 }
