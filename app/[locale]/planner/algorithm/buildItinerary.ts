@@ -1,52 +1,38 @@
-type RegionScore = {
-  region: string
-  score: number
+type DayPlan = {
+  day: number
+  places: DestinationScore[]
 }
 
 export function buildItinerary(
   sorted?: DestinationScore[],
-  regions?: RegionScore[],
+  regionDays?: RegionDays[],
   tripDays?: number,
-  intensity?: "relaxed" | "balanced" | "intense"
+  stopsPerDay: number = 3
 ): DayPlan[] | null {
 
-  if (!sorted || !regions || !tripDays || !intensity) return null;
+  if (!sorted || !regionDays || !tripDays) return null;
 
-  const stopsPerDay = {
-    relaxed: 2,
-    balanced: 3,
-    intense: 4
-  }
+  const result: DayPlan[] = [];
+  let currentDay = 1;
 
-  const result: DayPlan[] = []
+  for (const region of regionDays) {
+    const regionPlaces = sorted.filter(p => p.region === region.region);
+    let regionDayCount = 0;
 
-  let currentDay = 1
+    for (let i = 0; i < regionPlaces.length && regionDayCount < region.days; i += stopsPerDay) {
+      if (currentDay > tripDays) break;
 
-  for (const region of regions) {
-
-    if (currentDay > tripDays) break
-
-    const regionPlaces = sorted.filter(
-      place => place.region === region.region
-    )
-
-    for (let i = 0; i < regionPlaces.length; i += stopsPerDay[intensity]) {
-
-      if (currentDay > tripDays) break
-
-      const places = regionPlaces.slice(
-        i,
-        i + stopsPerDay[intensity]
-      )
+      const places = regionPlaces.slice(i, i + stopsPerDay);
 
       result.push({
         day: currentDay,
         places
-      })
+      });
 
-      currentDay++
+      currentDay++;
+      regionDayCount++;
     }
   }
 
-  return result
+  return result;
 }

@@ -10,7 +10,7 @@ export default function Home() {
   const t = useTranslations('HomePage')
 
   return (
-    <div className="flex items-center justify-between gap-5 mt-20 mb-30">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-5 mt-20 mb-30">
       <div className="flex-1">
         <h1 className="text-5xl font-bold mb-5">{t("title")}</h1>
         <p className="text-lg">{t("description")}</p>

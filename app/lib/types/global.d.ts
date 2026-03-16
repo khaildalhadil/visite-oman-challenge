@@ -51,7 +51,7 @@ declare global {
     tripDays: number
     budgetTier: string
     travelMonth: number
-    intensity: "relaxed" | "balanced" | "intense"
+    intensity: "relaxed" | "balanced" | "packed"
     userCategories: string[]
  }
 
@@ -79,5 +79,9 @@ declare global {
     places: DestinationScore[]
   }
 
+  type RegionDays = {
+    region: string
+    days: number
+  }
 
 }
