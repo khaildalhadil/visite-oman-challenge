@@ -1,13 +1,16 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function Days({place}: {place: DayPlan}) {
   
+  const t = useTranslations("days");
+
   return (
     <div>
       <h1 className="font-bold mt-5">Day {place.day}</h1>
       
       <div>
-        <span className="text-orange-300 my-3 block">Time: 10:00AM (faked)</span>
+        <span className="text-orange-300 my-3 block">{t("time")}</span>
         <ul className="grid grid-cols-2 gap-5">
           {place.places.map((p, i)=> (
             <li key={p.id} className="flex items-center gap-3 border border-neutral-200 p-2">
@@ -23,7 +26,7 @@ export default function Days({place}: {place: DayPlan}) {
               />
               <div className="flex flex-col gap-2">
                 <h2 className="font-bold">{p.name}</h2>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, incidunt.</p>
+                <p>{t("des")}</p>
                 <p className="font-bold">In {p.region}</p>
               </div>
             </li>
