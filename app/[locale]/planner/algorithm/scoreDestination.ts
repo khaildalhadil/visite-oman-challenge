@@ -8,7 +8,7 @@ export default function calculateDestinationScore(
   favoritesDestinations: FavoriteDestinations | undefined,
   savedPlaces: Destination[]
   ): DestinationScore[] | null {
-
+  
   if(!favoritesDestinations) return null;
 
   const scoredDestinations = savedPlaces.map((place) => {
@@ -48,9 +48,7 @@ export default function calculateDestinationScore(
       costScore* SCORE_WEIGHTS.cost ;
 
     return {
-      id: place.id,
-      region: place.region.en,
-      name: place.name.en,
+      place,
       score
     };
   })

@@ -62,9 +62,7 @@ declare global {
   };
 
   type DestinationScore = {
-    id: string;
-    name: string;
-    region: string;
+    place: Destination;
     score: number;
   };
 

@@ -6,21 +6,22 @@ export function allocateRegions(
   if (!destinations || !tripDays) return undefined;
 
   const regionScores: Record<string, number[]> = {};
-
+  
   destinations.forEach((dest) => {
 
-    if (!regionScores[dest.region]) {
-      regionScores[dest.region] = [];
+    if (!regionScores[dest.place.region.en]) {
+      regionScores[dest.place.region.en] = [];
     }
-    regionScores[dest.region].push(dest.score);
-
+    regionScores[dest.place.region.en].push(dest.score);
   });
   
   // caluc the avg
   const regionAvg: RegionScore[] = Object.entries(regionScores).map(
+    
     ([region, scores]) => ({
       region,
-      score: scores.reduce((a, b) => a + b, 0) / scores.length
+      score: scores.reduce((a, b) => a + b, 0) / scores.length,
+      
     })
   );
 

@@ -9,7 +9,7 @@ export function allocateDaysToRegions(
 ): RegionDays[] | undefined {
   if (!regions || !tripDays) return undefined;
 
-  // إنشاء مصفوفة باليوم لكل منطقة
+  // Create a daily matrix for each region
   const result: RegionDays[] = regions.map(r => ({
     region: r.region,
     days: 0
@@ -19,7 +19,7 @@ export function allocateDaysToRegions(
   let remainingDays = tripDays;
   let i = 0;
 
-  // التوزيع بشكل دائري حتى استهلاك كل الأيام
+  // Distribute in a circular fashion until all days are consumed
   while (remainingDays > 0) {
     const region = result[i % result.length];
 

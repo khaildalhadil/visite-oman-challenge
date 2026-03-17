@@ -12,6 +12,7 @@ import Modal from "../../components/Modal";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { allocateDaysToRegions } from "./algorithm/allocateDaystoRegions";
+import Map from "@/app/components/Map";
 
 export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
 
@@ -33,7 +34,9 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
   
   // get regions and give them avg score and sort them ✔
   const groupByRegion = allocateRegions(allocateRegionsSorted, userformInterests?.tripDays);
+  
 
+  // how many days for each region
   const daysToRegions = allocateDaysToRegions(
     groupByRegion,
     userformInterests?.tripDays
@@ -87,36 +90,54 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
   }
 
   if (!itinerary) return <div>Something went wrong</div>
-
+  const locations = [
+    { id: 1, name: "Place 1", lat: 23.3880, lng: 58.3829 },
+    { id: 2, name: "Place 2", lat: 23.6000, lng: 58.4000 },
+    { id: 3, name: "Place 3", lat: 23.5700, lng: 58.3600 },
+  ];
   return (
     <div>
       <div className="flex items-center justify-between mt-10">
         <h1 className="font-bold text-2xl">{t("header")}</h1>
         <div className="flex flex-col gap-3">
+          <Link
+            href={"/planner/upsert-tip"}
+            className="bg-green-600 text-green-50 p-2 rounded cursor-pointer"
+          >
+            {t("btnEdit")}
+          </Link>
 
-          <Link href={"/planner/upsert-tip"} className="bg-green-600 text-green-50 p-2 rounded cursor-pointer">{t("btnEdit")}</Link>
-
-          <button className="bg-red-600 text-red-100 p-2 rounded cursor-pointer"
-            onClick={()=> setIsModalOpenToDelete(true)}
-            >
+          <button
+            className="bg-red-600 text-red-100 p-2 rounded cursor-pointer"
+            onClick={() => setIsModalOpenToDelete(true)}
+          >
             {t("btnDelete")}
           </button>
-
         </div>
       </div>
-      {
-        isModalOpenToDelete && 
-          <Modal setIsOpen={setIsModalOpenToDelete} >
-            <p className="p-3 text-2xl font-bold">{t("deleteMessage")}</p>
-            <button 
-              className="bg-red-600 w-fit mb-10 px-2 py-1 text-red-50 cursor-pointer rounded "
-              onClick={handleDeleteTrip}
-              >{t("d")}</button>
-          </Modal>
-      }
-      {itinerary.map((place, i) => (
-        <Days key={i} place={place} />
-      ))}
+      {isModalOpenToDelete && (
+        <Modal setIsOpen={setIsModalOpenToDelete}>
+          <p className="p-3 text-2xl font-bold">{t("deleteMessage")}</p>
+          <button
+            className="bg-red-600 w-fit mb-10 px-2 py-1 text-red-50 cursor-pointer rounded "
+            onClick={handleDeleteTrip}
+          >
+            {t("d")}
+          </button>
+        </Modal>
+      )}
+
+        <div className=" mx-auto my-5 w-[98%] h-120">
+          {/* map */}
+          <Map locations={locations} zoom={10}  />
+        </div>
+
+        <div>
+          {itinerary.map((place, i) => (
+            <Days key={i} place={place} />
+          ))}
+        </div>
+
     </div>
   );
 }
