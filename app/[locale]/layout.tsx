@@ -30,7 +30,9 @@ export default async function RootLayout({
   params: PageParams;
 }) {
 
+  // I have big here I will fix it leter
   const { locale } = await params;
+  
 
   return (
     <html lang={locale} className={inter.className} dir={locale === "en" ? "ltr": "rtl"}>

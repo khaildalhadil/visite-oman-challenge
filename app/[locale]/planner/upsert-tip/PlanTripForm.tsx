@@ -35,7 +35,6 @@ function getPreferredCategories(allPlaces: Destination[]): Category[] {
 
 // I can use react hoot form to make it easy and fast but i did not do it
 export default function PlanTripForm() {
-  const [allPlaces, setAllPlaces] = useState<Destination[] | []>([])
   const [dataFromLocalSto, setDataFromLocalSto] = useState<null | FavoriteDestinations>(null);
 
   const t = useTranslations("formTrip")
@@ -54,7 +53,6 @@ export default function PlanTripForm() {
 
     async function getAllPlaces() {
       const allPlaces = await getPlaces();
-      setAllPlaces(allPlaces);
 
       const userDataAsString = localStorage.getItem("tripPreferences");
 

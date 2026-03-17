@@ -127,9 +127,9 @@ export default function AllPlan({allPlaces}: {allPlaces: Destination[]}) {
         </Modal>
       )}
 
-        <div className=" mx-auto my-5 w-[98%] h-120">
-          {/* map */}
+        <div className="mx-auto my-5 w-[98%] h-120 "  >
           <Map locations={locations} zoom={10}  />
+          {/* map */}
         </div>
 
         <div>

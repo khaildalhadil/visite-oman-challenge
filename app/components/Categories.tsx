@@ -20,7 +20,7 @@ export default function Categories() {
       <div>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_1fr_1fr] gap-5">
           {categories.map((c, i) => 
-            <li key={i} className=" relative">
+            <li key={i} className="relative">
               <Link href={`/destinations?page=1&per_page=20&region=all&season=all&category=${c.name}`}>
                 <Image
                   src={`/images/${c.image}`}

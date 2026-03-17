@@ -1,3 +1,4 @@
+'use client'
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -5,8 +6,6 @@ export default function Days({place}: {place: DayPlan}) {
   
   const t = useTranslations("days");
   const locale: string = useLocale() as LocaleType;
-  // const placeName = place.name[locale as "en" | "ar"];
-  // const placeLocation = place.region[locale as "en" | "ar"];
 
   return (
     <div>
