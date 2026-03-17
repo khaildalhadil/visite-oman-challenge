@@ -1,4 +1,4 @@
-'use clint'
+'use client'
 
 import Map from "@/app/components/Map";
 import SingleCardSkeleto from "@/app/components/SingleCardSkeleto";

@@ -16,7 +16,7 @@ export function buildItinerary(
   let currentDay = 1;
 
   for (const region of regionDays) {
-    const regionPlaces = sorted.filter(p => p.region === region.region);
+    const regionPlaces = sorted.filter(p => p.place.region.en === region.region);
     let regionDayCount = 0;
 
     for (let i = 0; i < regionPlaces.length && regionDayCount < region.days; i += stopsPerDay) {
