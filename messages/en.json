@@ -127,6 +127,11 @@
       "packed": "Packed (5 stops/day)"
     }
   },
+  "days": {
+    "day": "day",
+    "time": "Time: 10:00AM",
+    "des": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, incidunt."
+  },
   "footer": {
     "logo": "Visit Oman",
     "home": "Home",
