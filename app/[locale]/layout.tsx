@@ -16,21 +16,14 @@ export const metadata: Metadata = {
   description: "Visit Oman is a travel guide application that helps you discover the most beautiful destinations across Oman including beaches, mountains, deserts, and historical landmarks. Explore culture, adventure, nature, and hidden gems throughout the Sultanate of Oman.",
 };
 
-type Locales = "en" | "ar";
-
-interface PageParams {
-  locale: Locales;
-}
-
 export default async function RootLayout({
   children,
   params
 }: {
   children: React.ReactNode;
-  params: PageParams;
+  params: Promise<{ locale: string }>;
 }) {
 
-  // I have big here I will fix it leter
   const { locale } = await params;
   
 
